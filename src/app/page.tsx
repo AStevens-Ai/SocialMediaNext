@@ -1,5 +1,5 @@
 import Feed from './components/Feed'
-import NewPost from './components/newPost'
+import NewPost from './components/NewPost'
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
