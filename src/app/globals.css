@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Doto';
+  src: url(../../public/static/Doto-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url(../../public/Montserrat-Regular.ttf);
+}
+
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -9,13 +20,71 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #200c22;
     --foreground: #ededed;
   }
+}
+
+.search:hover {
+  cursor: pointer;
+}
+
+.headerBorder {
+  border-bottom: 3px solid #a086b2;
+}
+
+
+.backgroundColor:hover {
+  background-color: var(--background);
+  cursor: pointer;
+}
+
+.background {
+  background-color: var(--background);
+}
+
+.primary {
+  background-color: #a086b2;
+}
+
+.primaryBorder {
+  border: 1px solid #a086b2;
+}
+
+.searchInput:focus {
+  outline-color: #a086b2;
+}
+
+.textPrimary {
+  color: #a086b2;
+}
+
+.titleText {
+  font-family: 'Doto';
+}
+
+.hamburger {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: space-around;
+  flex-flow: column nowrap;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 50;
+}
+
+.burger {
+  background-color: white;
+  width: 2rem;
+  height: 0.25rem;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat';
 }

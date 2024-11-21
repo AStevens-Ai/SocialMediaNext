@@ -1,0 +1,86 @@
+[
+    {
+        "id": 1,
+        "title": "Exploring Digital Art Techniques",
+        "description": "A comprehensive guide to mastering digital art using modern tools and techniques.",
+        "image": "https://th.bing.com/th/id/OIP.pkPk2DYM27_OhNfRL1IoiwHaEm?rs=1&pid=ImgDetMain",
+        "tags": [
+            "art",
+            "digital",
+            "creative"
+        ],
+        "author": "Jane Doe"
+    },
+    {
+        "id": 2,
+        "title": "Top 10 Gaming Trends of 2024",
+        "description": "An exciting look at the gaming trends that will define the future of the industry.",
+        "image": "https://comparecamp.com/media/uploads/2020/05/Gaming-Trends-1.jpg",
+        "tags": [
+            "gaming",
+            "technology",
+            "trends"
+        ],
+        "author": "John Smith"
+    },
+    {
+        "id": 3,
+        "title": "Healthy Eating for Busy People",
+        "description": "Quick and easy recipes to maintain a healthy diet on a tight schedule.",
+        "image": "https://simplehealthfacts.com/media/2021/07/44-healthy-foods-to-eat-that-you-should-include-in-your-diet.jpg",
+        "tags": [
+            "health",
+            "food",
+            "lifestyle"
+        ],
+        "author": "Emily Davis"
+    },
+    {
+        "id": 4,
+        "title": "Mastering Photography with Your Smartphone",
+        "description": "Tips and tricks to capture stunning photos using just your phone.",
+        "image": "https://images.pexels.com/photos/368893/pexels-photo-368893.jpeg?cs=srgb&dl=adult-blur-camera-368893.jpg&fm=jpg",
+        "tags": [
+            "photography",
+            "technology",
+            "tips"
+        ],
+        "author": "Michael Brown"
+    },
+    {
+        "id": 5,
+        "title": "The Rise of Indie Game Development",
+        "description": "How small teams are creating some of the most innovative games today.",
+        "image": "https://spin.atomicobject.com/wp-content/uploads/indie-game-dev-3.png",
+        "tags": [
+            "gaming",
+            "indie",
+            "innovation"
+        ],
+        "author": "Sophia Wilson"
+    },
+    {
+        "id": 6,
+        "title": "A Beginner’s Guide to Oil Painting",
+        "description": "Everything you need to start creating your first oil painting masterpiece.",
+        "image": "https://th.bing.com/th/id/R.7658c57f1706468175907b62b81f70f9?rik=y0y5SExszW6LLA&riu=http%3a%2f%2f1.bp.blogspot.com%2f-4F561097034%2fT1HMBlDLSvI%2fAAAAAAAAAp4%2fwBK2Pp2YP_c%2fs1600%2fAutumn%2bOil%2bPaintings%2b3.jpg&ehk=wRCZu317ZJTGpBdFPmXWaIpt%2fiVxKEnWzcKvx20FxC8%3d&risl=&pid=ImgRaw&r=0",
+        "tags": [
+            "art",
+            "painting",
+            "beginner"
+        ],
+        "author": "Liam Martinez"
+    },
+    {
+        "id": 7,
+        "title": "Latest Trends in VR Gaming",
+        "description": "Dive into the immersive world of virtual reality gaming and its newest innovations.",
+        "tags": [
+            "gaming",
+            "vr",
+            "technology"
+        ],
+        "image": "https://th.bing.com/th/id/R.1467d203437ad99496bf44eac5455feb?rik=n7j1iMG%2biBBpTQ&riu=http%3a%2f%2fwww.thedigitalbridges.com%2fwp-content%2fuploads%2f2017%2f01%2fvirtual-reality-gaming-headsets.jpg&ehk=MTv2yclVgo8hpY93t3O3GbFcaH0hAB%2f8XXYeMM3Szf4%3d&risl=&pid=ImgRaw&r=0",
+        "author": "Olivia Garcia"
+    }
+]
