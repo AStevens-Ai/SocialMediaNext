@@ -86,7 +86,7 @@ function Header() {
                         )}
                     </div>
 
-                    {/* Navbar Links */}
+
                     <ul className="flex space-x-6 cursor-pointer text-white">
                         <li>Feed</li>
                         <li>Profile</li>
