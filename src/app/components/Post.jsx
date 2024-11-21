@@ -6,26 +6,50 @@ function Post({ userName, URL, title, description, tags }) {
 
     const isValidURL = URL && URL.trim() !== "";
     return (
-        <div key={userName} className='flex flex-col items-center bg-black rounded-lg shadow overflow-hidden m-4 max-w-96 min-h-50 primaryBorder'>
-            <header className='w-full p-4 primary align-middle font-bold text-lg titleText'>{title}</header>
-            <div className='p-4 text-center'>
-                <p className='font-bold m-2'><strong>{userName}</strong></p>
+        <div key={userName} className='grid grid-rows-[auto,1fr] lg:grid-cols-[1fr,1fr] lg:grid-rows-none items-center bg-[#1E1E1E] rounded-xl shadow-lg overflow-hidden m-4 max-w-4xl'>
+            {/* Header: Covering the entire top of the card */}
+            <header className='col-span-full p-6 text-center font-semibold text-white bg-gradient-to-r from-purple-600 to-purple-800 rounded-t-xl'>
+                {title}
+            </header>
 
-                <p className='m-2'>{description}</p>
+            {/* Image Section */}
+            {isValidURL && (
+                <div className='w-full lg:w-full flex justify-center p-4'>
+                    <img src={URL} alt={`Image for ${title}`} className='rounded-lg shadow-md object-cover' />
+                </div>
+            )}
+
+            {/* Content Section */}
+            <div className='flex flex-col p-6 lg:w-full'>
+                {/* User Name and Description */}
+                <div className='mt-4'>
+                    <p className='font-semibold text-white text-2xl'>{userName}</p>
+                    <p className='text-gray-300 text-lg mt-2'>{description}</p>
+                </div>
+
+                {/* Content Container for Button and Tags */}
+                <div className='flex flex-col items-center mt-6 space-y-4'>
+                    {/* Read More Button */}
+                    <p className='text-center p-3 bg-purple-700 text-white rounded-lg shadow-md hover:bg-purple-800 transition-all w-48'>
+                        Read more
+                    </p>
+
+                    {/* Tags */}
+                    <ul className='flex flex-wrap justify-center gap-3'>
+                        {tags.map((tag) => (
+                            <li key={tag} className='bg-purple-600 text-white text-sm px-2 py-1 rounded-full'>
+                                {tag}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
-            {isValidURL &&
-                <img src={URL} alt={`Image for ${title}`} width={500} height={500} />
-            }
-
-            <p className='ml-auto mr-auto p-2 primary mb-2 rounded-xl mt-3 backgroundColor'>Read more</p>
-
-            <ul className='flex flex-wrap justify-center mb-3 gap-4 textPrimary'>
-                {tags.map((tag) => (
-                    <li key={tag}>{tag}</li>
-                ))
-                }
-            </ul>
         </div>
+
+
+
+
+
     )
 }
 

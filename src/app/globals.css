@@ -22,6 +22,7 @@
   :root {
     --background: #200c22;
     --foreground: #ededed;
+
   }
 }
 
@@ -53,6 +54,7 @@
 
 .searchInput:focus {
   outline-color: #a086b2;
+  color: black;
 }
 
 .textPrimary {
