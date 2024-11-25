@@ -1,12 +1,23 @@
+'use client'
+
 import React from 'react'
 import { useState } from 'react';
 import svg from '../../../public/magnifying-glass-10-svgrepo-com.svg'
 import Image from "next/image"
 import logo from '../icon.ico'
+import {
+    SignInButton,
+    SignedIn,
+    SignedOut,
+    UserButton
+} from '@clerk/nextjs'
+
+import { useRouter } from 'next/navigation'
 
 function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const [searchActive, setSearchActive] = useState(false);
+    const router = useRouter()
 
     const searchOpen = () => setSearchActive(!searchActive);
 
@@ -15,7 +26,7 @@ function Header() {
             {/* Top fixed header */}
             <div className="flex justify-between items-center p-4 fixed top-0 left-0 right-0 background w-full headerBorder z-50">
                 {/* Logo */}
-                <Image src={logo} width={30} height={30} alt="logo" />
+                <Image className='cursor-pointer' src={logo} width={30} height={30} alt="logo" onClick={() => router.push('/')} />
 
                 {/* Search Bar (Desktop Hidden, Mobile Centered) */}
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:hidden">
@@ -52,12 +63,22 @@ function Header() {
 
                 {/* Mobile Menu */}
                 {isOpen && (
-                    <div className="absolute top-14 left-0 right-0 bg-transparent backdrop-blur-md">
-                        <ul className="flex flex-col items-center text-white space-y-4 mt-4">
-                            <li>Feed</li>
-                            <li>Profile</li>
-                            <li>News</li>
-                            <li>Friends</li>
+                    <div className="absolute top-14 left-0 right-0 bg-transparent backdrop-blur-md pb-6">
+                        <ul className="flex flex-col items-center text-white space-y-16 mt-4">
+
+                            <SignedOut>
+                                <SignInButton />
+                                <button type='button' onClick={() => router.push('/sign-up')}>
+                                    Sign Up
+                                </button>
+                            </SignedOut>
+                            <SignedIn>
+                                <li>Feed</li>
+                                <li>Profile</li>
+                                <li>News</li>
+                                <li>Friends</li>
+                                <UserButton />
+                            </SignedIn>
                         </ul>
                     </div>
                 )}
@@ -88,10 +109,20 @@ function Header() {
 
 
                     <ul className="flex space-x-6 cursor-pointer text-white">
-                        <li>Feed</li>
-                        <li>Profile</li>
-                        <li>News</li>
-                        <li>Friends</li>
+
+                        <SignedOut>
+                            <SignInButton />
+                            <button type='button' onClick={() => router.push('/sign-up')}>
+                                Sign Up
+                            </button>
+                        </SignedOut>
+                        <SignedIn>
+                            <li onClick={() => router.push('/')}>Feed</li>
+                            <li onClick={() => router.push('/sign-up')}>Profile</li>
+                            <li onClick={() => router.push('/sign-up')}>News</li>
+                            <li onClick={() => router.push('/sign-up')}>Friends</li>
+                            <UserButton />
+                        </SignedIn>
                     </ul>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 'use client'
 
+import { ClerkProvider } from "@clerk/nextjs";
 import Header from "./components/Header"
 
 import "./globals.css";
@@ -11,14 +12,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <ClerkProvider>
+      <html lang="en">
 
-      <body>
-        <Header />
+        <body>
+          <Header />
 
-        {children}
+          {children}
 
-      </body>
-    </html>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
