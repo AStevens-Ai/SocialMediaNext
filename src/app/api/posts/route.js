@@ -34,6 +34,7 @@ export async function POST(req) {
             .upload(`images/${filename}`, imageBuffer, { // Use imageBuffer here
                 contentType: 'image/png',
             });
+        console.log(uploadData)
 
         if (uploadError) {
             console.error('Supabase upload error:', uploadError);
