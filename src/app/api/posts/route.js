@@ -1,84 +1,66 @@
-import { randomUUID } from 'crypto'
-import { createPost } from '../../lib/createPost'
-import { NextResponse } from 'next/server'
-import path from 'path'
-import { writeFile } from 'fs/promises'
-import fs from 'fs'
+import { supabase } from '../../lib/supabaseClient';
+import { randomUUID } from 'crypto';
+import { createPost } from '../../lib/createPost';
+import { NextResponse } from 'next/server';
 
 export async function POST(req) {
     try {
-        const data = await req.json()
-        const { image, title, content, tags } = data
+        const data = await req.json();
+        const { image, title, content, tags } = data;
 
-        // Ensure all required fields are present
         if (!title || !content || !tags || tags.length === 0) {
             return NextResponse.json(
                 { error: 'Missing required fields: title, content, or tags' },
                 { status: 400 }
-            )
+            );
         }
 
-        // Check if image exists and is a base64 string
-        if (!image) {
-            return NextResponse.json({ error: 'No image received' }, { status: 400 })
+        if (!image || !/^data:image\/(png|jpg|jpeg);base64,/.test(image)) {
+            return NextResponse.json(
+                { error: 'Invalid or missing image' },
+                { status: 400 }
+            );
         }
 
-        // Check for valid base64 string (basic check for this example)
-        if (!/^data:image\/(png|jpg|jpeg);base64,/.test(image)) {
-            return NextResponse.json({ error: 'Invalid image format' }, { status: 400 })
+        // Decode base64 image
+        const imageBuffer = Buffer.from(image.split(',')[1], 'base64'); // Renamed to avoid conflict
+        const timestamp = Date.now();
+        const uuid = randomUUID();
+        const filename = `${timestamp}_${uuid}.png`;
+
+        // Upload image to Supabase bucket
+        const { data: uploadData, error: uploadError } = await supabase.storage
+            .from('images') // Replace with your bucket name
+            .upload(`images/${filename}`, imageBuffer, { // Use imageBuffer here
+                contentType: 'image/png',
+            });
+
+        if (uploadError) {
+            console.error('Supabase upload error:', uploadError);
+            return NextResponse.json({ error: 'Failed to upload image' }, { status: 500 });
         }
 
-        // Log the received image
-        console.log('Received image data:', image)
+        // Get the public URL of the uploaded image
+        const { data: publicUrlData } = supabase.storage
+            .from('images')
+            .getPublicUrl(`images/${filename}`);
 
-        const buffer = Buffer.from(image.split(',')[1], 'base64') // Remove the prefix before decoding
+        const imageUrl = publicUrlData.publicUrl;
 
-        const timestamp = Date.now()
-        const uuid = randomUUID()
-        const filename = `${timestamp}_${uuid}.png`
-
-        const uploadPath = path.join(process.cwd(), 'public/uploads', filename)
-
-        // Ensure the directory exists
-        if (!fs.existsSync(path.join(process.cwd(), 'public/uploads'))) {
-            fs.mkdirSync(path.join(process.cwd(), 'public/uploads'), { recursive: true })
-        }
-
-        // Log the buffer and upload path
-        console.log('Buffer:', buffer)
-        console.log('Upload Path:', uploadPath)
-
-        // Write the file to the server
-        try {
-            await writeFile(uploadPath, buffer)
-        } catch (writeError) {
-            console.error('File write error:', writeError)
-            return NextResponse.json({ error: 'Failed to write image file' }, { status: 500 })
-        }
-
-        const imageUrl = `/uploads/${filename}`
-
-        // Call createPost to insert post into the database
+        // Save post to the database
         const post = await createPost({
             title,
             content,
             imageUrl,
             tags,
-        })
+        });
 
-        // Log the created post
-        console.log('Created Post:', post)
-
-        // Return success response with the created post
-        return NextResponse.json(
-            { message: 'Success', post },
-            { status: 201 }
-        )
+        return NextResponse.json({ message: 'Success', post }, { status: 201 });
     } catch (err) {
-        console.error('Error creating post:', err)
+        console.error('Error creating post:', err);
         return NextResponse.json(
             { message: 'Issue posting data', error: err.message },
             { status: 500 }
-        )
+        );
     }
 }
