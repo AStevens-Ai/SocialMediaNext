@@ -8,7 +8,7 @@ function Post({ userName, URL, title, description, tags }) {
     return (
         <div key={userName} className='grid grid-rows-[auto,1fr] lg:grid-cols-[1fr,1fr] lg:grid-rows-none items-center bg-[#1E1E1E] rounded shadow-lg overflow-hidden m-4 max-w-4xl'>
             {/* Header: Covering the entire top of the card */}
-            <div className='col-span-full p-6 text-center font-semibold text-white bg-gradient-to-r from-purple-600 to-purple-800 rounded-t-xl'>
+            <div className='col-span-full p-6 text-center font-semibold text-white bg-gradient-to-r from-purple-500 to-purple-700 rounded-t-xl'>
                 {title}
             </div>
 
@@ -24,8 +24,8 @@ function Post({ userName, URL, title, description, tags }) {
                 {/* User Name and Description */}
                 <div className='mt-4'>
                     <p className='font-semibold text-white text-2xl'>{userName}</p>
-                    <p className='text-gray-300 text-lg mt-2'>{description} <button className='text-white text-sm'>
-                        Read more...
+                    <p className='text-gray-300 text-md mt-2'>{description.slice(0, 100) + '...'} <button className='text-purple-300 text-sm'>
+                        Read more
                     </button></p>
 
                 </div>
@@ -34,9 +34,9 @@ function Post({ userName, URL, title, description, tags }) {
                 <div className='flex flex-col items-center mt-6 space-y-4'>
                     {/* Tags */}
                     <ul className='flex flex-wrap justify-center gap-3'>
-                        {tags.map((tag) => (
-                            <li key={tag} className='bg-green-900 text-white text-sm px-2 py-1 rounded-full'>
-                                {tag}
+                        {tags?.map((tag) => (
+                            <li key={tag.id} className='bg-green-900 text-white text-sm px-2 py-1 rounded-full'>
+                                {tag.name}
                             </li>
                         ))}
                     </ul>

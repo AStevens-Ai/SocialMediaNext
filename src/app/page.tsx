@@ -1,27 +1,35 @@
-import { SignedIn, SignedOut } from '@clerk/nextjs';
+import React from 'react'
 import Feed from './components/Feed'
 import NewPost from './components/NewPost'
-import type { Metadata } from "next";
+import fetchPosts from './lib/fetchPosts'
+import { fetchUser } from './lib/fetchUser'
+import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "Hows it gonna be?",
-  description: "Social media but not",
+    title: "Latest Feed",
+    description: "Social media but not",
 };
 
-export default function Home() {
-  return (
+async function page() {
+    const posts = await fetchPosts()
 
-    <div className="flex justify-center">
-      <SignedIn>
-        <Feed />
-        <div className='fixed bottom-4 right-4 p-2 bg-purple-600 hover:bg-purple-700 rounded-lg'>
-          <NewPost />
+    const fullPosts = await Promise.all(
+        posts.map(async (post) => {
+            const user = await fetchUser({ postUserId: post.userId })
+            return {
+                ...post,
+                name: user?.name || "unknown user"
+            }
+        })
+    )
+    return (
+        <div className="flex">
+            <Feed posts={fullPosts} />
+            <div className="bottom-5 rounded-lg right-5 p-2 bg-purple-500 hover:bg-purple-700 flex fixed">
+                <NewPost />
+            </div>
         </div>
-      </SignedIn>
-      <SignedOut>
-        <p className="text-lg flex justify-center items-center h-screen p-5">Please sign in or sign up to view the feed.</p>
-      </SignedOut>
-    </div>
-
-  );
+    )
 }
+
+export default page

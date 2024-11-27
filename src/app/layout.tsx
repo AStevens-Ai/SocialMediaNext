@@ -1,25 +1,18 @@
-'use client'
 
 import { ClerkProvider } from "@clerk/nextjs";
-import Header from "./components/Header"
+import Header from './components/Header';
+import './globals.css';
+import { dark } from '@clerk/themes'
 
-import "./globals.css";
-
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider appearance={{
+      baseTheme: dark,
+    }}>
       <html lang="en">
-
         <body>
           <Header />
-
           {children}
-
         </body>
       </html>
     </ClerkProvider>

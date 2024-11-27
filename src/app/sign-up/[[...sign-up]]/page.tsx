@@ -1,5 +1,12 @@
 import React from 'react'
 import { SignUp } from '@clerk/nextjs'
+import type { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+    title: "Sign up",
+    description: "Social media but not",
+};
 
 function Page() {
     return (

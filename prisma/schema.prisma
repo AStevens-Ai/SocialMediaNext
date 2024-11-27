@@ -19,11 +19,15 @@ enum MessageStatus {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  email    String  @unique
-  password String
-  name     String?
-  posts    Post[]
+  id          String   @id @default(uuid())
+  clerkUserId String   @unique
+  imageUrl    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  email       String   @unique
+  password    String?
+  name        String?
+  posts       Post[]
 
   friendshipsSent     Friendship[] @relation("FriendshipsSent")
   friendshipsReceived Friendship[] @relation("FriendshipsReceived")
@@ -34,46 +38,39 @@ model User {
 model Friendship {
   id         Int      @id @default(autoincrement())
   sender     User     @relation("FriendshipsSent", fields: [senderId], references: [id])
-  senderId   Int
+  senderId   String
   receiver   User     @relation("FriendshipsReceived", fields: [receiverId], references: [id])
-  receiverId Int
+  receiverId String
   status     String   @default("pending")
   createdAt  DateTime @default(now())
 }
 
 model Messages {
-  id         Int           @id @default(autoincrement())
+  id         String        @id @default(uuid())
   sender     User          @relation("SentMessages", fields: [senderId], references: [id])
-  senderId   Int
+  senderId   String
   receiver   User          @relation("ReceivedMessages", fields: [receiverId], references: [id])
   content    String
-  receiverId Int
+  receiverId String
   status     MessageStatus @default(unread)
   createdAt  DateTime      @default(now())
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   title     String
   createdAt DateTime @default(now())
   content   String?
-  userId    Int
-  imageId   Int?
-  tags      Tag[]    @relation("PostTags")
+  userId    String
 
-  User  User   @relation(fields: [userId], references: [id])
-  Image Image? @relation(fields: [imageId], references: [id])
+  tags Tag[] @relation("PostTags")
+
+  User  User    @relation(fields: [userId], references: [id])
+  Image String?
 }
 
 model Tag {
-  id    Int    @id @default(autoincrement())
+  id    String @id @default(uuid())
   name  String @unique
   posts Post[] @relation("PostTags")
-}
-
-model Image {
-  id         Int      @id @default(autoincrement())
-  imageData  Bytes
-  uploadedAt DateTime @default(now())
-  Post       Post[]
 }
