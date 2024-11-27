@@ -1,9 +1,7 @@
 import React from 'react'
-import fetchPosts from '../lib/fetchPosts'
 import Post from './Post'
 
 function Feed({ posts }) {
-    console.log('Posts in Feed Component:', posts);  // This should log the posts array
     return (
         <div className="mt-16 flex flex-col gap-4 px-4 max-w-screen-lg mx-auto">
             {posts?.length > 0 ? (
@@ -15,10 +13,11 @@ function Feed({ posts }) {
                             title={post.title}
                             description={post.content}
                             tags={post.tags}
+                            createdAt={post.createdAt}
                         />
                     </div>
                 ))
-            ) : <p>It's quiet... too quiet.</p>}
+            ) : <p>It&apos;s quiet... too quiet.</p>}
         </div>
     );
 }

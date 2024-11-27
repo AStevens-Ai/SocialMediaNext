@@ -9,7 +9,7 @@ import {
     SignInButton,
     SignedIn,
     SignedOut,
-    UserButton
+    UserButton,
 } from '@clerk/nextjs'
 
 import { useRouter } from 'next/navigation'
@@ -85,7 +85,7 @@ function HeaderClient({ user }) {
                                 }}>Feed</li>
                                 <li onClick={() => {
                                     setIsOpen(false)
-                                    router.push('/sals')
+                                    router.push(`/profile/${user.id}`)
                                 }}>Profile</li>
                                 <li onClick={() => {
                                     setIsOpen(false)
@@ -136,7 +136,7 @@ function HeaderClient({ user }) {
                         </SignedOut>
                         <SignedIn>
                             <li onClick={() => router.push('/')}>Feed</li>
-                            <li onClick={() => router.push('/sign-up')}>Profile</li>
+                            <li onClick={() => router.push(`/profile/${user.id}`)}>Profile</li>
                             <li onClick={() => router.push('/sign-up')}>News</li>
                             <li onClick={() => router.push('/sign-up')}>Friends</li>
                             <UserButton />

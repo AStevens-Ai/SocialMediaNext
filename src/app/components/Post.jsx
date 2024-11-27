@@ -2,15 +2,25 @@ import React from 'react'
 import Image from 'next/image';
 
 
-function Post({ userName, URL, title, description, tags }) {
+function Post({ userName, URL, title, description, tags, createdAt }) {
 
     const isValidURL = URL && URL.trim() !== "";
     return (
         <div key={userName} className='grid grid-rows-[auto,1fr] lg:grid-cols-[1fr,1fr] lg:grid-rows-none items-center bg-[#1E1E1E] rounded shadow-lg overflow-hidden m-4 max-w-4xl'>
-            {/* Header: Covering the entire top of the card */}
-            <div className='col-span-full p-6 text-center font-semibold text-white bg-gradient-to-r from-purple-500 to-purple-700 rounded-t-xl'>
+            <div className='flex-col text-lg flex col-span-full p-6 text-center font-semibold text-white bg-gradient-to-r from-purple-500 to-purple-700 rounded-t-xl'>
                 {title}
+                <span className='text-blue-400 text-center align text-sm'>{new Date(createdAt).toLocaleString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'numeric',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: 'true',
+
+                })}</span>
             </div>
+
 
             {/* Image Section */}
             {isValidURL && (
@@ -35,7 +45,7 @@ function Post({ userName, URL, title, description, tags }) {
                     {/* Tags */}
                     <ul className='flex flex-wrap justify-center gap-3'>
                         {tags?.map((tag) => (
-                            <li key={tag.id} className='bg-green-900 text-white text-sm px-2 py-1 rounded-full'>
+                            <li key={tag.id} className='bg-blue-400 text-white text-sm px-2 py-1 rounded-full'>
                                 {tag.name}
                             </li>
                         ))}

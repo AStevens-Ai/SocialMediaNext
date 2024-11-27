@@ -1,7 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { db } from "./db";
 
-// Define the parameter type for fetchUser
 type FetchUserParams = {
     postUserId: string;
 };
@@ -23,6 +22,6 @@ export const fetchUser = async ({ postUserId }: FetchUserParams) => {
         return dbUser;
     } catch (err) {
         console.error(err);
-        return null; // Ensure a return value on error
+        return null;
     }
 };

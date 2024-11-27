@@ -4,7 +4,6 @@ import { db } from './db';
 
 export const checkUser = async () => {
     try {
-        // Fetch the current user from Clerk's server-side API
         const user = await currentUser();
 
         if (!user) {
@@ -17,7 +16,7 @@ export const checkUser = async () => {
         });
 
         if (loggedInUser) {
-            return loggedInUser; // If user exists, return them
+            return loggedInUser;
         }
 
         // Create a new user if not found in the database
@@ -27,14 +26,14 @@ export const checkUser = async () => {
                 name: `${user.firstName} ${user.lastName}`,
                 imageUrl: user.imageUrl,
                 email: user.emailAddresses[0].emailAddress,
+                password: user.id
             },
         });
 
-        return newUser; // Return the newly created user
+        return newUser;
 
     } catch (error) {
-        // Log the error and return null or an error message
         console.error("Error interacting with the database:", error);
-        return { error: "Failed to fetch or create user." }; // Return a generic error message
+        return { error: "Failed to fetch or create user." };
     }
 };
