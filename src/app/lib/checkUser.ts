@@ -15,6 +15,16 @@ export const checkUser = async () => {
             where: { clerkUserId: user.id },
         });
 
+        const checkUsername = await db.user.findUnique({
+            where: { clerkUserId: user.id },
+        })
+
+        if (checkUsername) {
+            if (checkUsername.name === 'null' || checkUsername.name === null) {
+                return { needsUsername: true }
+            }
+        }
+
         if (loggedInUser) {
             return loggedInUser;
         }
@@ -26,9 +36,10 @@ export const checkUser = async () => {
                 name: `${user.firstName} ${user.lastName}`,
                 imageUrl: user.imageUrl,
                 email: user.emailAddresses[0].emailAddress,
-                password: user.id
+                password: null
             },
         });
+
 
         return newUser;
 

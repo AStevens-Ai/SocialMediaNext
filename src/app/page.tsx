@@ -2,8 +2,10 @@ import React from 'react'
 import Feed from './components/Feed'
 import NewPost from './components/NewPost'
 import fetchPosts from './lib/fetchPosts'
-import { fetchUser } from './lib/fetchUser'
+import { fetchUserbyPostId } from './lib/fetchUser'
 import { Metadata } from 'next'
+import { checkUser } from './lib/checkUser'
+import { redirect } from 'next/navigation';
 
 type Post = {
   id: string;
@@ -19,9 +21,16 @@ export const metadata: Metadata = {
 
 async function page() {
   const posts = await fetchPosts()
+  const user = await checkUser()
+
+  if (user.needsUsername) {
+    alert('Please Set a username inside of edit-profile')
+    redirect('/edit-profile')
+
+  }
 
   const userPromises = posts.map((post: Post) =>
-    fetchUser({ postUserId: post.userId }).then(user => ({
+    fetchUserbyPostId({ postUserId: post.userId }).then(user => ({
       post,
       user
     }))

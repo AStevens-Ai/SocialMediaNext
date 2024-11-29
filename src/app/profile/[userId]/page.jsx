@@ -1,14 +1,20 @@
-import { fetchUser } from '../../lib/fetchUser'
+import { fetchUserbyPostId } from '../../lib/fetchUser'
 import { fetchUserPosts } from '@/app/lib/fetchPosts'
 import ProfileHeader from '../../components/ProfileHeader'
 import ProfileContent from '../../components/ProfileContent'
+
+
+export const metadata = {
+    title: `My Profile`,
+    description: "Social media but not",
+};
 
 
 export default async function page({ params }) {
     const { userId } = await params
 
     const [user, posts] = await Promise.all([
-        fetchUser({ postUserId: userId }),
+        fetchUserbyPostId({ postUserId: userId }),
         fetchUserPosts(),
     ])
     console.log(posts)

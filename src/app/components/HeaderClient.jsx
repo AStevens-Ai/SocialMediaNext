@@ -7,12 +7,14 @@ import Image from "next/image"
 import logo from '../icon.ico'
 import {
     SignInButton,
+    SignUpButton,
     SignedIn,
     SignedOut,
     UserButton,
 } from '@clerk/nextjs'
 
 import { useRouter } from 'next/navigation'
+import Link from 'next/link';
 
 
 function HeaderClient({ user }) {
@@ -78,25 +80,14 @@ function HeaderClient({ user }) {
                                     Sign up
                                 </button>
                             </SignedOut>
-                            <SignedIn>
-                                <li onClick={() => {
-                                    setIsOpen(false)
-                                    router.push('/')
-                                }}>Feed</li>
-                                <li onClick={() => {
-                                    setIsOpen(false)
-                                    router.push(`/profile/${user.id}`)
-                                }}>Profile</li>
-                                <li onClick={() => {
-                                    setIsOpen(false)
-                                    router.push('/')
-                                }}>News</li>
-                                <li onClick={() => {
-                                    setIsOpen(false)
-                                    router.push('/')
-                                }}>Friends</li>
+                            {user && (<SignedIn>
+
+                                <Link href={'/'}>Feed</Link>
+                                <Link href={`/profile/${user.id}`}>Profile</Link>
+                                <Link href={'/'}>News</Link>
+                                <Link href={'/'}>Friends</Link>
                                 <UserButton />
-                            </SignedIn>
+                            </SignedIn>)}
                         </ul>
                     </div>
                 )}
@@ -130,17 +121,18 @@ function HeaderClient({ user }) {
 
                         <SignedOut>
                             <SignInButton />
-                            <button type='button' onClick={() => router.push('/sign-up')}>
-                                Sign up
-                            </button>
+                            <SignUpButton />
                         </SignedOut>
-                        <SignedIn>
-                            <li onClick={() => router.push('/')}>Feed</li>
-                            <li onClick={() => router.push(`/profile/${user.id}`)}>Profile</li>
-                            <li onClick={() => router.push('/sign-up')}>News</li>
-                            <li onClick={() => router.push('/sign-up')}>Friends</li>
-                            <UserButton />
-                        </SignedIn>
+                        {user && (
+                            <SignedIn>
+                                <Link href={'/'}>Feed</Link>
+                                <Link href={`/profile/${user.id}`}>Profile</Link>
+                                <Link href={'/'}>News</Link>
+                                <Link href={'/'}>Friends</Link>
+                                <UserButton />
+                            </SignedIn>
+                        )}
+
                     </ul>
                 </div>
             </div>

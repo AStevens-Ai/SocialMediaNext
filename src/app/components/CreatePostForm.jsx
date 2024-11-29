@@ -26,7 +26,7 @@ function CreatePostForm() {
                 title,
                 content,
                 image,
-                tags  // Use cleaned tags
+                tags
             };
             const response = await fetch('/api/posts', {
                 method: 'POST',

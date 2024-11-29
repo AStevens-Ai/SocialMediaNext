@@ -1,7 +1,10 @@
 import React from 'react'
 import Post from './Post'
 
+
 function Feed({ posts }) {
+
+
     return (
         <div className="mt-16 flex flex-col gap-4 px-4 max-w-screen-lg mx-auto">
             {posts?.length > 0 ? (

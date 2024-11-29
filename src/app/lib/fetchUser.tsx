@@ -5,7 +5,7 @@ type FetchUserParams = {
     postUserId: string;
 };
 
-export const fetchUser = async ({ postUserId }: FetchUserParams) => {
+export const fetchUserbyPostId = async ({ postUserId }: FetchUserParams) => {
     try {
         const user = await currentUser();
 
@@ -25,3 +25,25 @@ export const fetchUser = async ({ postUserId }: FetchUserParams) => {
         return null;
     }
 };
+
+export const fetchUser = async () => {
+    const user = await currentUser();
+
+    if (!user) {
+        return null;
+    }
+
+    try {
+        const dbUser = await db.user.findUnique({
+            where: {
+                clerkUserId: user.id
+            }
+        })
+
+        return dbUser;
+    } catch (err) {
+        console.error(err)
+        return
+    }
+
+}
