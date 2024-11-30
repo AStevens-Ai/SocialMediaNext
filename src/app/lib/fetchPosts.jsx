@@ -32,6 +32,8 @@ export const fetchUserPosts = async ({ userId }) => {
             }
         })
 
+        console.log(dbUser)
+
         const posts = await db.post.findMany({
             where: {
                 userId: userId

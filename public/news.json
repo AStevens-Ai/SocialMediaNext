@@ -1,0 +1,40 @@
+{
+    "news": [
+        {
+            "category": "World",
+            "headline": "Global Summit in Geneva Highlights Climate Action Goals",
+            "details": "Leaders from over 50 countries gathered in Geneva to discuss accelerated plans for achieving net-zero emissions by 2050.",
+            "date": "2024-11-30"
+        },
+        {
+            "category": "Technology",
+            "headline": "AI Breakthrough: New Algorithm Predicts Earthquakes with 90% Accuracy",
+            "details": "Scientists have developed an AI model capable of predicting seismic activity days in advance, offering hope for disaster preparedness.",
+            "date": "2024-11-30"
+        },
+        {
+            "category": "Sports",
+            "headline": "Underdog Team Wins National Soccer Championship",
+            "details": "The Wild Wolves stunned fans by defeating the reigning champions 3-2 in a thrilling overtime match.",
+            "date": "2024-11-30"
+        },
+        {
+            "category": "Health",
+            "headline": "New Study Links Mediterranean Diet to Improved Cognitive Health",
+            "details": "Researchers found that individuals following the Mediterranean diet experienced a 30% slower cognitive decline compared to others.",
+            "date": "2024-11-30"
+        },
+        {
+            "category": "Entertainment",
+            "headline": "Record-Breaking Box Office Weekend for New Sci-Fi Thriller",
+            "details": "The much-anticipated movie 'Stellar Odyssey' raked in $150 million in its opening weekend, setting a new franchise record.",
+            "date": "2024-11-30"
+        },
+        {
+            "category": "Business",
+            "headline": "Tech Startup Valued at $10 Billion After Successful Funding Round",
+            "details": "InnovateAI, a company specializing in next-gen robotics, raised $1.2 billion in its latest Series C funding round.",
+            "date": "2024-11-30"
+        }
+    ]
+}

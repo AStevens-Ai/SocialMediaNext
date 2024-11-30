@@ -1,5 +1,6 @@
 import React from 'react';
 import ProfilePosts from './ProfilePosts';
+import Link from 'next/link';
 
 const ProfileContent = ({ posts }) => {
     return (
@@ -9,6 +10,7 @@ const ProfileContent = ({ posts }) => {
                     <ProfilePosts post={post} />
                 </div>
             ))}
+            <Link className='p-2 bg-purple-500 rounded-lg fixed bottom-5 right-5 mx-auto' href={'/create-post'}>Create Post</Link>
         </div>
     );
 };

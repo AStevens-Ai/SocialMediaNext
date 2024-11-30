@@ -7,6 +7,8 @@ import { Metadata } from 'next'
 import { checkUser } from './lib/checkUser'
 import { redirect } from 'next/navigation';
 
+
+
 type Post = {
   id: string;
   title: string;
@@ -20,13 +22,13 @@ export const metadata: Metadata = {
 };
 
 async function page() {
-  const posts = await fetchPosts()
+
   const user = await checkUser()
 
   if (user.needsUsername) {
     redirect('/edit-profile')
   }
-
+  const posts = await fetchPosts()
   const userPromises = posts.map((post: Post) =>
     fetchUserbyPostId({ postUserId: post.userId }).then(user => ({
       post,

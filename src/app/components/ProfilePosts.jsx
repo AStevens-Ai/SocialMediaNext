@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const ProfilePosts = ({ post }) => {
     return (
         <div className="bg-[#392e45] p-6 rounded-lg shadow-lg">

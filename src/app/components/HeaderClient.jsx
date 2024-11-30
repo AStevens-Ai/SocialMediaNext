@@ -83,8 +83,8 @@ function HeaderClient({ user }) {
 
                                 <Link href={'/'}>Feed</Link>
                                 <Link href={`/profile/${user.id}`}>Profile</Link>
-                                <Link href={'/'}>News</Link>
-                                <Link href={'/'}>Friends</Link>
+                                <Link href={'/news'}>News</Link>
+                                <Link href={'/friends'}>Friends</Link>
                                 <UserButton />
                             </SignedIn>)}
                         </ul>
@@ -126,8 +126,8 @@ function HeaderClient({ user }) {
                             <SignedIn>
                                 <Link href={'/'}>Feed</Link>
                                 <Link href={`/profile/${user.id}`}>Profile</Link>
-                                <Link href={'/'}>News</Link>
-                                <Link href={'/'}>Friends</Link>
+                                <Link href={'/news'}>News</Link>
+                                <Link href={'/friends'}>Friends</Link>
                                 <UserButton />
                             </SignedIn>
                         )}

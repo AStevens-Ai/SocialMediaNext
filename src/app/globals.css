@@ -34,10 +34,6 @@
   border-bottom: 3px solid #a086b2;
 }
 
-.createPostForm {
-  border: 3px solid #a086b2;
-}
-
 
 .backgroundColor:hover {
   background-color: var(--background);
