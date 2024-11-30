@@ -24,9 +24,7 @@ async function page() {
   const user = await checkUser()
 
   if (user.needsUsername) {
-    alert('Please Set a username inside of edit-profile')
     redirect('/edit-profile')
-
   }
 
   const userPromises = posts.map((post: Post) =>
@@ -39,7 +37,9 @@ async function page() {
 
   const fullPosts = postUserData.map(({ post, user }) => ({
     ...post,
-    name: user?.name || "unknown user"
+    name: user?.name || "unknown user",
+    imageUrl: user?.imageUrl,
+    iD: user?.id
   }))
 
   return (

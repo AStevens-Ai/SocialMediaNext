@@ -2,20 +2,20 @@ import { fetchUserbyPostId } from '../../lib/fetchUser'
 import { fetchUserPosts } from '@/app/lib/fetchPosts'
 import ProfileHeader from '../../components/ProfileHeader'
 import ProfileContent from '../../components/ProfileContent'
-
-
-export const metadata = {
-    title: `My Profile`,
-    description: "Social media but not",
-};
+import { auth } from '@clerk/nextjs/server'
 
 
 export default async function page({ params }) {
-    const { userId } = await params
+    //db user id
+    const { userID } = await params
+
+    //clerk user id
+    const { userId } = await auth()
+
 
     const [user, posts] = await Promise.all([
-        fetchUserbyPostId({ postUserId: userId }),
-        fetchUserPosts(),
+        fetchUserbyPostId({ postUserId: userID }),
+        fetchUserPosts({ userId: userID }),
     ])
     console.log(posts)
 
@@ -23,7 +23,7 @@ export default async function page({ params }) {
     return (
         <div className='bg-[#200c22] text-white pt-12'>
             <div className='border-b-[#a086b2] border-b-2'>
-                <ProfileHeader user={user} />
+                <ProfileHeader user={user} clerkUserId={userId} />
             </div>
             <ProfileContent posts={posts} />
         </div>

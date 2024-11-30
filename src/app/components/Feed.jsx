@@ -17,6 +17,8 @@ function Feed({ posts }) {
                             description={post.content}
                             tags={post.tags}
                             createdAt={post.createdAt}
+                            userImage={post.imageUrl}
+                            iD={post.iD}
                         />
                     </div>
                 ))

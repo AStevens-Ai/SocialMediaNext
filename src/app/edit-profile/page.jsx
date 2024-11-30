@@ -1,10 +1,13 @@
 import React from 'react'
-import { fetchUser } from '../lib/fetchUser'
+import { fetchUserByClerkId } from '../lib/fetchUser'
 import EditProfileForm from '../components/EditProfileForm'
 import BackButton from '../components/BackButton'
+import { auth } from '@clerk/nextjs/server'
 
 async function page() {
-    const user = await fetchUser()
+    const { userId } = await auth()
+
+    const user = await fetchUserByClerkId({ clerkId: userId })
     return (
         <div>
             <BackButton />

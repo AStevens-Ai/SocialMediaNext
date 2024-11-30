@@ -7,6 +7,7 @@ import Image from "next/image"
 import logo from '../icon.ico'
 import {
     SignInButton,
+    SignUp,
     SignUpButton,
     SignedIn,
     SignedOut,
@@ -76,9 +77,7 @@ function HeaderClient({ user }) {
 
                             <SignedOut>
                                 <SignInButton />
-                                <button type='button' onClick={() => router.push('/sign-up')}>
-                                    Sign up
-                                </button>
+                                <SignUp />
                             </SignedOut>
                             {user && (<SignedIn>
 

@@ -20,7 +20,7 @@ const fetchPosts = async () => {
     }
 };
 
-export const fetchUserPosts = async () => {
+export const fetchUserPosts = async ({ userId }) => {
     try {
         const user = await currentUser();
         if (!user) {
@@ -34,7 +34,7 @@ export const fetchUserPosts = async () => {
 
         const posts = await db.post.findMany({
             where: {
-                userId: dbUser.id
+                userId: userId
             },
             include: {
                 tags: true

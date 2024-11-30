@@ -1,8 +1,9 @@
 import React from 'react'
 import Image from 'next/image';
+import Link from 'next/link';
 
 
-function Post({ userName, URL, title, description, tags, createdAt }) {
+function Post({ iD, userImage, userName, URL, title, description, tags, createdAt }) {
 
     const isValidURL = URL && URL.trim() !== "";
     return (
@@ -25,15 +26,16 @@ function Post({ userName, URL, title, description, tags, createdAt }) {
             {/* Image Section */}
             {isValidURL && (
                 <div className='w-full lg:w-full flex justify-center p-4'>
-                    <Image width={600} height={700} src={URL} alt={`Image for ${title}`} className='rounded-lg shadow-md ' />
+                    <Image width={600} height={700} src={URL} alt={`Image for ${title}`} className='rounded-lg shadow-md  border-2 border-[#a086b2]' />
                 </div>
             )}
 
             {/* Content Section */}
             <div className='flex flex-col p-6 lg:w-full'>
                 {/* User Name and Description */}
-                <div className='mt-4'>
-                    <p className='font-semibold text-white text-2xl'>{userName}</p>
+                <div className='mt-2'>
+                    {userImage && (<Image alt='user profile image' className='rounded-full border-4 mb-2 border-[#a086b2]  ml-0' src={userImage} height={100} width={100} />)}
+                    <Link href={`/profile/${iD}`} className='font-semibold text-white hover:text-[#a086b2] text-1xl'>{userName}</Link>
                     <p className='text-gray-300 text-md mt-2'>{description.slice(0, 100) + '...'} <button className='text-purple-300 text-sm'>
                         Read more
                     </button></p>
