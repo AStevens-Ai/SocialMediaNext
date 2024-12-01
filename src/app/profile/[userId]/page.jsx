@@ -10,7 +10,7 @@ export default async function page({ params }) {
     const resolvedParams = await params
     console.log('params', resolvedParams)
     //db user id
-    const dbUser = resolvedParams.userID
+    const dbUser = resolvedParams.userId
 
     //clerk user id
     const { userId } = await auth()
