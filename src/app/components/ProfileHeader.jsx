@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import image from '../../../public/uploads/1076674.webp'
 
 
 const ProfileHeader = ({ user, clerkUserId }) => {
@@ -21,7 +22,7 @@ const ProfileHeader = ({ user, clerkUserId }) => {
         <div className="text-center flex flex-col gap-2 py-6 bg-[#200c22] items-center flex-grow-0">
             <Image
                 className="rounded-full border-4 border-[#a086b2] w-36 h-36 mx-auto"
-                src={user.imageUrl}
+                src={user.imageUrl | image}
                 alt="Profile Picture"
                 width={200}
                 height={200}
