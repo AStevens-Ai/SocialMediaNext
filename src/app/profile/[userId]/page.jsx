@@ -10,7 +10,7 @@ export default async function page({ params }) {
     const resolvedParams = await params
     console.log('params', resolvedParams)
     //db user id
-    const { userID } = params
+    const { userID } = await params
 
     //clerk user id
     const { userId } = await auth()
@@ -27,7 +27,7 @@ export default async function page({ params }) {
     return (
         <div className='bg-[#200c22] text-white pt-12'>
             <div className='border-b-[#a086b2] border-b-2'>
-                <ProfileHeader user={user} clerkUserId={userId} />
+                <ProfileHeader user={user} clerkUserId2={userId} />
             </div>
             {posts.length === 0 ? (
                 <div className='flex flex-col justify-center gap-4 align-middle items-center h-full min-h-72 text-lg'>

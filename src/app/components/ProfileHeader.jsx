@@ -6,12 +6,12 @@ import Link from 'next/link';
 import image from '../../../public/uploads/1076674.webp'
 
 
-const ProfileHeader = ({ user, clerkUserId }) => {
+const ProfileHeader = ({ user, clerkUserId2 }) => {
     const [isUser, setIsUser] = useState(false)
 
 
     useEffect(() => {
-        if (user.clerkUserId === clerkUserId) {
+        if (user?.clerkUserId === clerkUserId2) {
             setIsUser(true)
         } else {
             setIsUser(false)
