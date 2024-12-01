@@ -29,7 +29,7 @@ const ProfilePosts = ({ post }) => {
                 height={200}
             />
             <h2 className="text-2xl">{post.title}</h2>
-            <p className='text-[#007aff]'>{formattedDate}</p>
+            <p className='text-[#007aff]'>{formattedDate || 'Loading date...'}</p>
             <p className="text-white mt-4 text-md">{post.content.slice(0, 400) + '...'}</p>
             <div className="mt-4 flex flex-wrap gap-2 justify-start">
                 {post.tags.map((tag) => (
@@ -42,4 +42,4 @@ const ProfilePosts = ({ post }) => {
     );
 };
 
-export default ProfilePosts;
+export default ProfilePosts
