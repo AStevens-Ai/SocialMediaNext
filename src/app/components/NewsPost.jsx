@@ -2,7 +2,7 @@ import React from 'react'
 
 function NewsPost({ details, date, headline, category }) {
     return (
-        <div key={headline} className="bg-purple-800 border border-purple-500 rounded-lg p-6 max-w-md shadow-lg ">
+        <div className="bg-purple-800 border border-purple-500 rounded-lg p-6 max-w-md shadow-lg ">
             <p className="text-blue-400 text-xs font-bold uppercase mb-2">{category}</p>
             <h2 className="text-white text-lg font-semibold mb-4">
                 {headline}
