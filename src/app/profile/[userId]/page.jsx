@@ -1,4 +1,5 @@
-import { fetchUserbyPostId } from '../../lib/fetchUser'
+'use server'
+import { fetchUser } from '../../lib/fetchUser'
 import { fetchUserPosts } from '@/app/lib/fetchPosts'
 import ProfileHeader from '../../components/ProfileHeader'
 import ProfileContent from '../../components/ProfileContent'
@@ -12,10 +13,11 @@ export default async function page({ params }) {
 
     //clerk user id
     const { userId } = await auth()
+    console.log("Clerk userId:", userId); // This should not be null
 
 
     const [user, posts] = await Promise.all([
-        fetchUserbyPostId({ postUserId: userID }),
+        fetchUser({ userId: userID }),
         fetchUserPosts({ userId: userID }),
     ])
     console.log(posts)
