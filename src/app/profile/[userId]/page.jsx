@@ -8,7 +8,7 @@ import Link from 'next/link'
 
 export default async function page({ params }) {
     //db user id
-    const { userID } = await params
+    const { userID } = params
 
     //clerk user id
     const { userId } = await auth()
