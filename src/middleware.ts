@@ -1,21 +1,12 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { clerkMiddleware } from "@clerk/nextjs/server";
 
-// Exclude /sign-up and /sign-in from protection
-const isPublicRoute = createRouteMatcher(['/sign-up(.*)', '/sign-in(.*)'])
 export default clerkMiddleware(async (auth, req) => {
-    // Protect all routes except the public routes
-    if (!isPublicRoute(req)) {
-        await auth.protect();
+    console.log("Incoming Request:", req.url);
+    const session = await auth.protect();
+
+    if (!session) {
+        console.error("No session found!");
+    } else {
+        console.log("Authenticated Clerk User:", session.userId);
     }
 });
-
-// Configure the middleware to apply to relevant routes
-export const config = {
-    matcher: [
-        '/',                      // Home route
-        '/sign-up(.*)',            // Match /sign-up and any sub-routes under it
-        '/sign-in(.*)',            // Match /sign-in and any sub-routes under it
-        '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-        '/(api|trpc)(.*)',         // Always run for API routes
-    ],
-};
