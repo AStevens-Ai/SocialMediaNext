@@ -27,8 +27,8 @@ const ProfileHeader = ({ user, clerkUserId }) => {
                 width={200}
                 height={200}
             />
-            <h1 className="text-[#a086b2] text-3xl mt-4">{user.name}</h1>
-            <p className="text-white text-lg mt-2">Hello, I am {user.name}</p>
+            <h1 className="text-[#a086b2] text-3xl mt-4">{user?.name}</h1>
+            <p className="text-white text-lg mt-2">Hello, I am {user?.name}</p>
             {isUser && <Link className='p-2 bg-purple-500 rounded-lg' href={'/edit-profile'}>Edit Profile</Link>}
         </div>
     );
