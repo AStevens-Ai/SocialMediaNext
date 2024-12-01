@@ -10,11 +10,12 @@ export default async function page({ params }) {
     const resolvedParams = await params
     console.log('params', resolvedParams)
     //db user id
-    const { dbUser } = resolvedParams.userId
+    const dbUser = resolvedParams.userID
 
     //clerk user id
     const { userId } = await auth()
     console.log("params:", dbUser);
+    console.log("clerkID", userId)
 
 
     const [user, posts] = await Promise.all([
