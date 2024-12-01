@@ -7,15 +7,16 @@ import image from '../../../public/uploads/1076674.webp'
 
 
 const ProfileHeader = ({ user, clerkUserId }) => {
-    const [isUser, setIsUser] = useState(false);
+    const [isUser, setIsUser] = useState(false)
+
 
     useEffect(() => {
-        if (user && clerkUserId && user.clerkUserId === clerkUserId) {
-            setIsUser(true);
+        if (user.clerkUserId === clerkUserId) {
+            setIsUser(true)
         } else {
-            setIsUser(false);
+            setIsUser(false)
         }
-    }, [user, clerkUserId]); // Re-run effect when `user` or `clerkUserId` changes
+    }, [])
 
     return (
         <div className="text-center flex flex-col gap-2 py-6 bg-[#200c22] items-center flex-grow-0">
@@ -33,5 +34,4 @@ const ProfileHeader = ({ user, clerkUserId }) => {
     );
 };
 
-
-export default ProfileHeader
+export default ProfileHeader;
