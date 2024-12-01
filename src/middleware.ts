@@ -13,7 +13,7 @@ export default clerkMiddleware(async (auth, req) => {
 export const config = {
     matcher: [
         '/',                      // Home route
-        '/profile/:userID',         // Match dynamic routes like /profile/[userID]
+        '/profile/(.*)',         // Match dynamic routes like /profile/[userID]
         '/sign-up(.*)',            // Match /sign-up and any sub-routes under it
         '/sign-in(.*)',            // Match /sign-in and any sub-routes under it
         '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
