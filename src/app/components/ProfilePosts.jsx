@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 
 const ProfilePosts = ({ post }) => {
@@ -20,10 +21,12 @@ const ProfilePosts = ({ post }) => {
 
     return (
         <div className="bg-[#392e45] p-6 rounded-lg shadow-lg">
-            <img
+            <Image
                 src={post.Image}
                 alt={post.title}
                 className="w-full h-48 object-cover rounded-lg mb-4"
+                width={200}
+                height={200}
             />
             <h2 className="text-2xl">{post.title}</h2>
             <p className='text-[#007aff]'>{formattedDate}</p>
